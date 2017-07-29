@@ -145,11 +145,11 @@ class KVSessionInterface(SessionInterface):
                         session_cookie).decode('ascii')
                     sid = SessionID.unserialize(sid_s)
 
-                    if sid.has_expired(app.permanent_session_lifetime):
+                    #if sid.has_expired(app.permanent_session_lifetime):
                         # we reach this point if a "non-permanent" session has
                         # expired, but is made permanent. silently ignore the
                         # error with a new session
-                        raise KeyError
+                    #    raise KeyError
 
                     # retrieve from store
                     s = self.session_class(self.serialization_method.loads(
