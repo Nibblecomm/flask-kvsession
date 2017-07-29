@@ -168,7 +168,8 @@ class KVSessionInterface(SessionInterface):
 
     def save_session(self, app, session, response):
         # we only save modified sessions
-        if session.modified:
+        # of if its a permanant session and SESSION_REFRESH_EACH_REQUEST is set
+        if self.should_set_cookie(app,session):
             # create a new session id if requested (by setting sid_s to None)
             # this makes it possible to avoid session fixation
             if not getattr(session, 'sid_s', None):
